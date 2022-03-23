@@ -12,6 +12,7 @@ return [
     'pdf' => [
         'lib' => 'Pdf', //Pdf, FPDM
         'path' => '/assets/bhv/',
+        'out_path' => '/output/',
         'name' => 'bhv.pdf',
         'fields' => [
             'fullname'    => 'Full Name',

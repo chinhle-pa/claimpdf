@@ -55,6 +55,11 @@ class App
         return $greeting . ' ' . $name;
     }
     public function getInfo() {
+        $data = $this->pdf->getData();
+        if ($data === false) {
+            $error = $this->pdf->getError();
+        }
+        return $data;
         return $this->pdf->Info();
     }
     public function pdfLoad($fields) {
@@ -63,20 +68,21 @@ class App
             $this->pdf->Load($this->fields, true);
         }
     }
-    public function pdfOutput($fields) {
+    public function pdfOutput($fields, $file_name, $is_base64=true) {
         $this->pdfLoad($fields);
-        $result = $this->pdf->fillForm($this->fields)->needAppearances()->saveAs('filled.pdf');
+        $result = $this->pdf->fillForm($this->fields)->needAppearances()->execute();
+        // $this->pdf->send($file_name.'.pdf');
+        
         // Always check for errors
         if ($result === false) {
             $error = $this->pdf->getError();
-            dd($error);
         } else {
-            // $pdf = new Pdf('filled.pdf');
-            // $result = $pdf->generateFdfFile('/path/data.fdf');
-            // if ($result === false) {
-            //     $error = $pdf->getError();
-            // }
-
+            if($is_base64) {
+                $content = base64_encode(file_get_contents( (string) $this->pdf->getTmpFile() ));
+                return $content;
+            } else {
+                $this->pdf->saveAs(dirname(__FILE__).$this->config->get('pdf')['out_path'].$file_name.'.pdf');
+            }
         }
         if($this->lib == 'FPDM'){
             // $this->pdf->Merge();
