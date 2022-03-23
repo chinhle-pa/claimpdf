@@ -28,11 +28,11 @@ class Config
      *
      * @param \Illuminate\Config\Repository $config
      */
-    public function __construct()
+    public function __construct($config_name='bhv')
     {
         $configPath = $this->configurationPath();
 
-        $config_file = $configPath . '/' . self::CONFIG_FILE_NAME . '.php';
+        $config_file = $configPath . '/' . $config_name . '.php';
 
         if (!file_exists($config_file)) {
             throw new ConfigFileNotFoundException();

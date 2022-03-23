@@ -10,7 +10,7 @@ return [
     */
     'pdf' => [
         'lib' => 'Pdf', //Pdf, FPDM
-        'path' => '/assets/cathay/',
+        'path' => '/assets/fubon/',
         'out_path' => '/output/',
         'name' => 'gop.pdf',
         'fields' => [
