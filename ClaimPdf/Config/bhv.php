@@ -34,7 +34,7 @@ return [
             'symptom' => '',
             'first_consultation_date' => '',
             'treatment_plan' => 'Điều trị ngoại trú',
-            'treatment_plan_radio' => 'Off', //Off, inpatient, outpatient, surgery
+            'treatment_plan_radio' => 'Off', //Off, Inpatient, Outpatient, Surgery
             'admission_date' => '',
             'discharge_date' => '',
             'room_and_board' => '',
